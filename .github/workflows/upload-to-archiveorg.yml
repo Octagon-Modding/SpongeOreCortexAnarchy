@@ -1,0 +1,29 @@
+name: Upload to Archive.org
+on: push
+
+jobs:
+  job:
+    name: Upload
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: |
+          pip install internetarchive
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create bundle
+        run: git bundle create spongeore-${{ github.sha }}.bundle --all
+
+      - name: Upload file to archive.org
+        run: |
+          ia configure -u ${{ secrets.IA_USER }} -p ${{ secrets.IA_PWD }}
+          ia upload spongeore-${{ github.sha }} spongeore-${{ github.sha }}.bundle --metadata="mediatype:software" --metadata="creator:Octagon Development" --metadata="title:spongeore-${{ github.sha }}" --metadata="scanner:SpongeOre Auto-Archive" --metadata="collection:open_source_software" --metadata="subject:sponge;ore;Minecraft;paper;purpur;pufferfish;bukkit;spigot;nova;mod;modded" --metadata="originalurl:https://github.com/Octagon-Modding/SpongeOreCortexAnarchy" --retries 20

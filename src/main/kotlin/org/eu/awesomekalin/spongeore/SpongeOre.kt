@@ -1,4 +1,4 @@
-package com.example
+package org.eu.awesomekalin.spongeore
 
 import xyz.xenondevs.nova.addon.Addon
 

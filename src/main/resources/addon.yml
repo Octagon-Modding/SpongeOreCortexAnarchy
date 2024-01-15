@@ -1,0 +1,6 @@
+id: "${project.id}"
+name: "${project.name}"
+version: "${project.version}"
+main: "${project.main}"
+novaVersion: "${project.novaVersion}"
+authors: "${project.authors}"
