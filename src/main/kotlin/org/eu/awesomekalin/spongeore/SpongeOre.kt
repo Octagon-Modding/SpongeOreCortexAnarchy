@@ -2,7 +2,7 @@ package org.eu.awesomekalin.spongeore
 
 import xyz.xenondevs.nova.addon.Addon
 
-object ExampleAddon : Addon() {
+object SpongeOre : Addon() {
     
     override fun init() {
         // Called when the addon is initialized.
